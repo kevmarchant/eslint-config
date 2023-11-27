@@ -1,19 +1,19 @@
 {
   "name": "eslint-config-kevlar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Typescript Node/Next/React Eslint/Prettier config",
   "main": "index.js",
   "keywords": [],
   "author": "Kev Marchant <km@mitsol.co.uk>",
   "license": "ISC",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
-    "eslint": "^8.38.0",
-    "eslint-config-next": "^13.3.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2"
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.54.0",
+    "eslint-config-next": "^14.0.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "^7.33.2"
   },
   "peerDependencies": {
     "eslint": ">= 6",
