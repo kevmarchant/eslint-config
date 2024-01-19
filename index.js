@@ -20,6 +20,7 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     'quotes': ['error', 'single'],
     '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-misused-new': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
