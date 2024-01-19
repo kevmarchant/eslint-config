@@ -20,28 +20,12 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     'quotes': ['error', 'single'],
     '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-misused-new': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
         caughtErrorsIgnorePattern: '^_'
-      }
-    ],
-    'prettier/prettier': [
-      'error',
-      {
-        tabWidth: 2,
-        useTabs: false,
-        semi: true,
-        singleQuote: true,
-        quoteProps: 'consistent',
-        jsxSingleQuote: false,
-        arrowParens: 'avoid',
-        printWidth: 140,
-        trailingComma: 'none',
-        bracketSpacing: true
       }
     ]
   },
