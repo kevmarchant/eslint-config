@@ -11,14 +11,16 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['@stylistic'],
   rules: {
+    '@stylistic/semi': 'error',
+    '@stylistic/indent': ['error', 2],
+    '@stylistic/quotes': ['error', 'single'],
+    '@stylistic/comma-dangle': ['error', 'never'],
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
-    'comma-dangle': ['error', 'never'],
-    'quotes': ['error', 'single'],
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
