@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-kevlar",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Typescript Node/Next/React Eslint/Prettier config",
   "main": "index.js",
   "keywords": [],
