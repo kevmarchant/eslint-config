@@ -1,20 +1,47 @@
 {
   "name": "eslint-config-kevlar",
-  "version": "1.1.4",
-  "description": "Typescript Node/Next/React Eslint/Prettier config",
-  "main": "index.js",
-  "keywords": [],
+  "version": "2.0.2",
+  "description": "Typescript Node/Next/React Eslint/Prettier config using flat config format",
+  "main": "eslint.config.mjs",
+  "type": "module",
+  "exports": {
+    ".": "./eslint.config.mjs",
+    "./prettier": "./.prettierrc"
+  },
+  "bin": {
+    "eslint-config-kevlar": "./setup.mjs"
+  },
+  "scripts": {
+    "setup": "node setup.mjs"
+  },
+  "files": [
+    "eslint.config.mjs",
+    ".prettierrc",
+    "setup.mjs"
+  ],
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "prettier",
+    "typescript",
+    "react",
+    "next"
+  ],
   "author": "Kev Marchant <km@mitsol.co.uk>",
   "license": "ISC",
   "dependencies": {
-    "@stylistic/eslint-plugin": "^2.6.1",
-    "@typescript-eslint/eslint-plugin": "^8.0.1",
-    "@typescript-eslint/parser": "^8.0.1",
-    "eslint": "^9.8.0",
-    "eslint-config-next": "^14.2.5",
-    "eslint-plugin-react": "^7.35.0"
+    "@eslint/js": "^9.34.0",
+    "@typescript-eslint/eslint-plugin": "^8.41.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-vitest": "^0.5.4",
+    "globals": "^16.3.0"
   },
   "peerDependencies": {
-    "eslint": ">= 8"
+    "eslint": "^9.34.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
   }
 }
