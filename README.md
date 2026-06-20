@@ -1,126 +1,116 @@
 # eslint-config-kevlar
 
-Modern ESLint and Prettier configuration for TypeScript, React, and Next.js projects using ESLint's flat config format.
+Shareable ESLint 10 + Prettier flat config for TypeScript, React 19 and Next.js 16 projects.
 
-## Quick Setup (Recommended)
+Import it, compose it, done. The rules live in this package — there are no files to copy and no setup command to run. Upgrade by bumping the version.
 
-Run this command in your project root:
+## Install
 
-```bash
-npx eslint-config-kevlar
-```
-
-or with pnpm:
+Pick the line for your project type. ESLint, Prettier and TypeScript stay your project's own dependencies (they are peers); everything else comes with the package.
 
 ```bash
-pnpm dlx eslint-config-kevlar
+# TypeScript / Node library
+npm install --save-dev eslint-config-kevlar eslint prettier typescript
+
+# React or Next.js app (react / react-dom / next are your app's own deps)
+npm install --save-dev eslint-config-kevlar eslint prettier typescript
 ```
 
-or with yarn:
+pnpm and yarn work the same way (`pnpm add -D ...`, `yarn add -D ...`).
 
-```bash
-yarn dlx eslint-config-kevlar
+## Usage
+
+Create `eslint.config.mjs` in your project root.
+
+### TypeScript / Node
+
+```js
+import kevlar from 'eslint-config-kevlar';
+
+export default kevlar;
 ```
 
-This will:
+### React
 
-1. Install required dependencies (eslint, prettier, typescript) if missing
-2. Create `eslint.config.mjs` with ESLint configuration
-3. Create `.prettierrc` with Prettier configuration
+```js
+import kevlar from 'eslint-config-kevlar';
+import react from 'eslint-config-kevlar/react';
 
-That's it! Your project is now configured.
-
-## Alternative: Install as Dependency
-
-If you prefer to keep the config as a dependency:
-
-```bash
-npm install --save-dev eslint-config-kevlar
-# or
-yarn add -D eslint-config-kevlar
-# or
-pnpm add -D eslint-config-kevlar
+export default [...kevlar, ...react];
 ```
 
-Then run the setup:
+### Next.js
 
-```bash
-npx eslint-config-kevlar
-# or
-yarn eslint-config-kevlar
-# or
-pnpm eslint-config-kevlar
+```js
+import kevlar from 'eslint-config-kevlar';
+import next from 'eslint-config-kevlar/next';
+
+export default [...kevlar, ...next];
 ```
 
-## Manual Configuration
+The `next` entry includes the React rules, so you do not need to add `./react` as well.
 
-If you need to customize the configuration:
+### Prettier
 
-### ESLint Configuration
+Add one key to your `package.json` — no `.prettierrc` file needed:
 
-Create an `eslint.config.mjs` file in your project root:
-
-```javascript
-import kevlarConfig from 'eslint-config-kevlar';
-
-export default kevlarConfig;
+```json
+{
+  "prettier": "eslint-config-kevlar/prettier"
+}
 ```
 
-To customize rules:
+## Entry points
 
-```javascript
-import kevlarConfig from 'eslint-config-kevlar';
+| Import                          | What it provides                                                        |
+| ------------------------------- | ----------------------------------------------------------------------- |
+| `eslint-config-kevlar`          | Base: TypeScript (recommended + strict), Vitest test rules, Prettier    |
+| `eslint-config-kevlar/react`    | React rules (`@eslint-react`) + React 19 Hooks/Compiler rules           |
+| `eslint-config-kevlar/next`     | Everything in `/react` plus Next.js core-web-vitals + Server Components |
+| `eslint-config-kevlar/prettier` | The Prettier options, for the `package.json` `prettier` key             |
+
+## Rules at a glance
+
+- No `any` (`@typescript-eslint/no-explicit-any`), no non-null assertions
+- Explicit function return types (expressions and typed expressions exempt)
+- Unused variables must be prefixed with `_`
+- Single quotes, semicolons required, no trailing commas, newline at end of file
+- Prettier-enforced formatting, `printWidth` 180, 2-space indentation
+- Vitest: no focused (`it.only`) or disabled (`it.skip`) tests in committed code
+- React 19: rules of hooks, exhaustive deps and the React Compiler rule set
+- Next.js: Core Web Vitals rules and React Server Components checks
+
+## Extending and overriding
+
+Append your own flat-config objects after the spread:
+
+```js
+import kevlar from 'eslint-config-kevlar';
 
 export default [
-  ...kevlarConfig,
+  ...kevlar,
   {
     rules: {
-      // Your custom rules here
+      'no-console': 'error'
     }
   }
 ];
 ```
 
-### Prettier Configuration
+## Compatibility
 
-The `.prettierrc` file is automatically created during setup. If you need to recreate it manually:
+| Tool       | Supported range       |
+| ---------- | --------------------- |
+| eslint     | `^9.0.0 \|\| ^10.0.0` |
+| prettier   | `^3.0.0`              |
+| typescript | `>=5.9.0 <6.1.0`      |
 
-```json
-{
-  "semi": true,
-  "trailingComma": "none",
-  "singleQuote": true,
-  "printWidth": 180,
-  "tabWidth": 2,
-  "useTabs": false,
-  "endOfLine": "lf",
-  "arrowParens": "always",
-  "bracketSpacing": true,
-  "proseWrap": "never",
-  "bracketSameLine": true,
-  "singleAttributePerLine": false
-}
-```
+## Migrating from v2
 
-## Features
-
-- **ESLint 9+ flat config format**
-- **TypeScript strict mode** with no `any` types allowed
-- **React and Next.js support**
-- **Prettier integration** for consistent formatting
-- **Vitest support** for test files
-- **Automatic dependency installation**
-- **Zero configuration needed**
-
-## Rules Highlights
-
-- No `any` types (`@typescript-eslint/no-explicit-any`: error)
-- Semicolons required
-- Single quotes preferred
-- No trailing commas
-- 180 character line width (Prettier)
-- 2 space indentation
-- Unused variables must be prefixed with underscore
+- Stop running `npx eslint-config-kevlar` — there is no setup/scaffold command anymore.
+- Replace your generated `eslint.config.mjs` with the three-line stub above for your project type.
+- Move Prettier to the `package.json` key shown above. An existing `.prettierrc` still works if you prefer to keep one; the package key is just the no-file option.
+- The React layer now uses `@eslint-react` (the previous `eslint-plugin-react` does not install on ESLint 10). Rule names under React change accordingly; the previous `react/prop-types` and `react/react-in-jsx-scope` toggles are no longer needed.
 
 ## License
 

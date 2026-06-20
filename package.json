@@ -1,47 +1,62 @@
 {
   "name": "eslint-config-kevlar",
-  "version": "2.0.2",
-  "description": "Typescript Node/Next/React Eslint/Prettier config using flat config format",
-  "main": "eslint.config.mjs",
+  "version": "3.0.0",
+  "description": "Shareable ESLint 10 + Prettier flat config for TypeScript, React 19 and Next.js 16 projects",
   "type": "module",
+  "license": "ISC",
+  "author": "Kev Marchant <km@mitsol.co.uk>",
+  "homepage": "https://github.com/kevmarchant/eslint-config",
   "exports": {
-    ".": "./eslint.config.mjs",
-    "./prettier": "./.prettierrc"
+    ".": "./index.mjs",
+    "./react": "./react.mjs",
+    "./next": "./next.mjs",
+    "./prettier": "./prettier.json",
+    "./package.json": "./package.json"
   },
-  "bin": {
-    "eslint-config-kevlar": "./setup.mjs"
-  },
-  "scripts": {
-    "setup": "node setup.mjs"
-  },
+  "prettier": "./prettier.json",
   "files": [
-    "eslint.config.mjs",
-    ".prettierrc",
-    "setup.mjs"
+    "index.mjs",
+    "react.mjs",
+    "next.mjs",
+    "prettier.json",
+    "README.md"
   ],
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --test test/configs.test.mjs"
+  },
   "keywords": [
     "eslint",
     "eslintconfig",
+    "eslint-config",
+    "flat-config",
     "prettier",
     "typescript",
     "react",
-    "next"
+    "next",
+    "vitest"
   ],
-  "author": "Kev Marchant <km@mitsol.co.uk>",
-  "license": "ISC",
   "dependencies": {
-    "@eslint/js": "^9.34.0",
-    "@typescript-eslint/eslint-plugin": "^8.41.0",
-    "@typescript-eslint/parser": "^8.41.0",
+    "@eslint/js": "^10.0.1",
+    "@eslint-react/eslint-plugin": "^5.9.1",
+    "@next/eslint-plugin-next": "^16.2.9",
+    "@vitest/eslint-plugin": "^1.6.20",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-vitest": "^0.5.4",
-    "globals": "^16.3.0"
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.6.0",
+    "typescript-eslint": "^8.61.1"
   },
   "peerDependencies": {
-    "eslint": "^9.34.0",
-    "prettier": "^3.6.2",
-    "typescript": "^5.9.2"
+    "eslint": "^9.0.0 || ^10.0.0",
+    "prettier": "^3.0.0",
+    "typescript": ">=5.9.0 <6.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^10.5.0",
+    "prettier": "^3.8.4",
+    "typescript": "^6.0.3"
   }
 }
